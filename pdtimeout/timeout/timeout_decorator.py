@@ -16,7 +16,9 @@ def timeout(decorator_timeout=0.5, raise_error=True, replace_value=None, error_m
             timeout_in_seconds = decorator_timeout
 
             if replace_value:
-                raise_error = False
+                raise_error_ = False
+            else:
+                raise_error_ = raise_error
 
             signal.signal(signal.SIGALRM, _handle_timeout)
             signal.setitimer(signal.ITIMER_REAL, timeout_in_seconds)
@@ -24,7 +26,7 @@ def timeout(decorator_timeout=0.5, raise_error=True, replace_value=None, error_m
             try:
                 result = func(*args, **kwargs)
             except TimeoutError:
-                if raise_error:
+                if raise_error_:
                     if hasattr(args[0], "name"):
                         raise TimeoutError(f"{error_message}. Index = {args[0].name}")
                     else:

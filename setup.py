@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', 'pandas>=0.25.0']
+requirements = ['Click>=7.0', 'pandas>=0.25.1']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -26,8 +26,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
@@ -35,11 +33,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="Generate TimeOut errors with pandas.apply",
-    entry_points={
-        'console_scripts': [
-            'pdtimeout=pdtimeout.cli:main',
-        ],
-    },
+    entry_points={},
     install_requires=requirements,
     license="Apache Software License 2.0",
     long_description=readme + '\n\n' + history,
