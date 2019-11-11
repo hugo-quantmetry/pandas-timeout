@@ -36,7 +36,7 @@ def sleep_and_halve(row):
 
 
 def run_timeout():
-    df = pd.DataFrame({'number': [1, 0.5, 0.2, 2, 0.3]})
+    df = pd.DataFrame({'number': [1, 0.5, 0.2, 2, 0.3]}, index=[0, 2, 4, 6, 8])
 
     # df['result'] = df.apply(sleep_and_halve, axis=1)
     # df['result'] = df['number'].apply(sleep_and_double)

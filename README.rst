@@ -23,28 +23,27 @@ Generate TimeOut errors with pandas.apply
 * Documentation: https://pdtimeout.readthedocs.io.
 
 
-Features
---------
-
+Basic usage : Raise a TimeOut Error
+-----------------------------------
 
 * Define a pandas DataFrame
 
 .. code-block:: python
 
-    df = pd.DataFrame({'number': [1, 0.5, 0.2, 2, 0.3]})
+    df = pd.DataFrame({'number': [1, 0.5, 0.2, 2, 0.3]}, index=[0, 2, 4, 6, 8])
 
 +-------+--------+
 | Index | Number |
 +=======+========+
 |   0   |    1   |
 +-------+--------+
-|   1   |   0.5  |
+|   2   |   0.5  |
 +-------+--------+
-|   2   |  0.2   |
+|   4   |  0.2   |
 +-------+--------+
-|   3   |    2   |
+|   6   |    2   |
 +-------+--------+
-|   4   |   0.3  |
+|   8   |   0.3  |
 +-------+--------+
 
 * Define a function to apply on the DataFrame and set the timeout value
@@ -59,7 +58,7 @@ Features
 
         return number_ * 3
 
-This function first sleeps for `number` seconds and then returns the triple of the input value.
+This function first sleeps for ``number`` seconds and then returns the triple of the input value.
 Since the highest number is 2, a timeout value of 4 should not trigger a TimeOut error.
 
 * Apply function on DataFrame
@@ -76,13 +75,13 @@ Since the highest number is 2, a timeout value of 4 should not trigger a TimeOut
 +=======+========+========+
 |   0   |    1   |    3   |
 +-------+--------+--------+
-|   1   |   0.5  |   1.5  |
+|   2   |   0.5  |   1.5  |
 +-------+--------+--------+
-|   2   |  0.2   |  0.6   |
+|   4   |  0.2   |  0.6   |
 +-------+--------+--------+
-|   3   |    2   |    6   |
+|   6   |    2   |    6   |
 +-------+--------+--------+
-|   4   |   0.3  |   0.9  |
+|   8   |   0.3  |   0.9  |
 +-------+--------+--------+
 
 * Change the timeout value to 1.7 seconds and re-apply function on DataFrame
@@ -102,7 +101,11 @@ Since the highest number is 2, a timeout value of 4 should not trigger a TimeOut
 
 The following TimeOut error is triggered:
 
->>> "TimeoutError: ('Time expired. Index = 3', 'occurred at index 3')"
+>>> "TimeoutError: ('Time expired', 'occurred at index 6')"
+
+The row index (pandes ``.loc``) of the row triggering the TimeOut error is given in the error message.
+
+
 
 
 Credits
