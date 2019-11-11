@@ -26,11 +26,28 @@ Generate TimeOut errors with pandas.apply
 Features
 --------
 
+
+* Define a pandas DataFrame
+
+.. code-block:: python
+
+    df = pd.DataFrame({'number': [1, 0.5, 0.2, 2, 0.3]})
+
++------------+------------+
+|   Index    |   Number   |
++============+============+
+| body row 1 | column 2   |
++------------+------------+
+| body row 2 | Cells may  |
++------------+------------+
+
+
+
 * TODO
 
 .. code-block:: python
 
-   @timeout(1.5, raise_error=True)
+   @timeout(1.5)
     def sleep_and_triple(row):
         number_ = row['number']
 
