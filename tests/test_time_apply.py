@@ -1,7 +1,7 @@
 import time
 import pandas as pd
 
-from timeout.time_decorator import time_apply
+from pdtimeout.timeout.time_decorator import time_apply
 
 
 def test_time_apply():

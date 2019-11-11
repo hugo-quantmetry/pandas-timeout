@@ -1,7 +1,7 @@
 import time
 import pandas as pd
 
-from timeout.timeout_decorator import timeout
+from pdtimeout.timeout.timeout_decorator import timeout
 
 
 def test_raise_timeout():
