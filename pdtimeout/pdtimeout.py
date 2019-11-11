@@ -10,7 +10,8 @@ from timeout.timeout_decorator import timeout
 from timeout.time_decorator import time_apply
 
 
-@timeout(1.5, raise_error=True)
+#@timeout(1.5, raise_error=True)
+@timeout(1, replace_value='TimeOut')
 def sleep_and_triple(row):
     number_ = row['number']
 

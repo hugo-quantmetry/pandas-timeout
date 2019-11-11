@@ -4,7 +4,7 @@ import signal
 # from timeout.timeout_error import TimeoutError
 
 
-def timeout(decorator_timeout=0.5, replace_value=None, raise_error=True, error_message='Time expired'):
+def timeout(decorator_timeout=0.5, raise_error=True, replace_value=None, error_message='Time expired'):
 
     def decorator(func):
 
@@ -14,6 +14,9 @@ def timeout(decorator_timeout=0.5, replace_value=None, raise_error=True, error_m
         def wrapper(*args, **kwargs):
 
             timeout_in_seconds = decorator_timeout
+
+            if replace_value:
+                raise_error = False
 
             signal.signal(signal.SIGALRM, _handle_timeout)
             signal.setitimer(signal.ITIMER_REAL, timeout_in_seconds)

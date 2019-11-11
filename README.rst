@@ -104,8 +104,37 @@ The following TimeOut error is triggered:
 >>> "TimeoutError: ('Time expired', 'occurred at index 6')"
 
 The row index (pandes ``.loc``) of the row triggering the TimeOut error is given in the error message.
+The row with index 6 sleeps for 2 seconds which is longer than the TimeOut value, thus the error is triggered.
 
+Return a default value in case of timeout
+-----------------------------------------
 
+.. code-block:: python
+
+    @timeout(1, replace_value='TimeOut')
+    def sleep_and_triple(row):
+        number_ = row['number']
+
+        time.sleep(number_)
+
+        return number_ * 3
+
+    df['result'] = df.apply(sleep_and_halve, axis=1)
+    print(df)
+
++-------+--------+--------+
+| Index | Number | Result |
++=======+========+========+
+|   0   |    1   |TimeOut |
++-------+--------+--------+
+|   2   |   0.5  |   1.5  |
++-------+--------+--------+
+|   4   |  0.2   |  0.6   |
++-------+--------+--------+
+|   6   |    2   |TimeOut |
++-------+--------+--------+
+|   8   |   0.3  |   0.9  |
++-------+--------+--------+
 
 
 Credits
